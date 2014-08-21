@@ -265,6 +265,12 @@ def install_couchdb():
     su_delete('apache-couchdb-%s' % version)
     su_delete('apache-couchdb-%s.tar.gz' % version)
 
+
+@task
+def run_couchdb():
+    '''
+    Run CouchDB via Supervisor plus set permissions first..
+    '''
     require.users.user('couchdb', home='/usr/local/var/lib/couchdb')
     sudo('chown -R couchdb:couchdb /usr/local/etc/couchdb')
     sudo('chown -R couchdb:couchdb /usr/local/var/lib/couchdb')
